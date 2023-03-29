@@ -16,20 +16,20 @@ export default function Form(props) {
         name="name"
         type="text"
         placeholder="Enter Student Name"
-        /*
-          This must be a controlled component
-          your code goes here
-        */
+        value={student}
+        onChange={(event) => setStudent(event.target.value)}
       />
     </form>
     <InterviewerList 
-      /* your code goes here */
+      value={interviewer}
+      interviewers={props.interviewers}
+      onChange={setInterviewer}
     />
   </section>
   <section className="appointment__card-right">
     <section className="appointment__actions">
-      <Button danger {/* your code goes here */}>Cancel</Button>
-      <Button confirm {/* your code goes here */}>Save</Button>
+      <Button danger onClick={props.onCancel}>Cancel</Button>
+      <Button confirm onClick={{/*leaving for next week*/}}>Save</Button>
     </section>
   </section>
 </main>
