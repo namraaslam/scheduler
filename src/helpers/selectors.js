@@ -19,8 +19,8 @@ export function getInterview(state, interview) {
   return result;
 }
 
-export function getInterviewersForDay(state, interviewer) {
-  const findDay = state.days.find(x => x.name === interviewer);
+export function getInterviewersForDay(state, day) {
+  const findDay = state.days.find(x => x.name === day);
   if (!findDay) {
     return [];
   }
