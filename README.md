@@ -1,4 +1,10 @@
 # Interview Scheduler
+Using the latest tools and techniques, I built and tested a React application that allows users to book and cancel interviews. I combined a concise API with a WebSocket server to build a realtime experience.
+
+## Final Product
+
+!["Screenshot of Main Page"](https://github.com/namraaslam/scheduler/blob/master/docs/InterviewPage.png?raw=true)
+!["Screenshot of Delete Confirmation"](https://github.com/namraaslam/scheduler/blob/master/docs/DeleteConfirmation.png?raw=true)
 
 ## Setup
 
@@ -21,4 +27,3 @@ npm test
 ```sh
 npm run storybook
 ```
-## RESULT SCREENSHOTS
