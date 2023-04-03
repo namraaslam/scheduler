@@ -30,6 +30,19 @@ export default function useApplicationData() {
 
   const setDay = (day) => setState({ ...state, day });
 
+  function updateSpotsRemaining(state, nameOfDay, modifier) {
+    const daysArr = state.days;
+    let newArr = [];
+
+    for (const day of daysArr) {
+      if (day.name === nameOfDay) {
+        day.spots += modifier;
+      }
+      newArr.push(day);
+    }
+    return newArr;
+  }
+
   function bookInterview(id, interview) {
     console.log(id, interview);
     const appointment = {
@@ -47,6 +60,7 @@ export default function useApplicationData() {
         setState({
           ...state,
           appointments,
+          days: updateSpotsRemaining(state, state.day, -1)
         });
         return response;
       });
@@ -67,6 +81,7 @@ export default function useApplicationData() {
       setState({
         ...state,
         appointments,
+        days: updateSpotsRemaining(state, state.day, 1)
       });
       return response;
     });
