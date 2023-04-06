@@ -12,13 +12,15 @@ Install dependencies with `npm install`.
 Download and follow README of scheduler-api: https://github.com/namraaslam/scheduler-api
 
 ## Dependencies
- axios
- classnames
- normalize.css
- react
- react-dom
- react-scripts
-
+```sh
+- axios
+- classnames
+- normalize.css
+- react
+- cookie-session
+- react-dom
+- react-scripts
+```
 ## Running Webpack Development Server
 
 ```sh
