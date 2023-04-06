@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
@@ -16,35 +17,31 @@ export default function useApplicationData() {
       axios.get("/api/interviewers"),
     ])
       .then((all) => {
-        setState((prev) => ({
+        setState(prev => ({
           ...prev,
           days: all[0].data,
           appointments: all[1].data,
           interviewers: all[2].data,
         }));
       })
-      .catch((error) => {
-        console.log(error);
-      });
   }, []);
 
   const setDay = (day) => setState({ ...state, day });
 
-  function updateSpotsRemaining(state, nameOfDay, modifier) {
-    const daysArr = state.days;
-    let newArr = [];
-
-    for (const day of daysArr) {
-      if (day.name === nameOfDay) {
-        day.spots += modifier;
+  function updateSpotsRemaining(state, appointments) {
+    const dayObject = state.days.find(x => x.name === state.day);
+    let spots = 0;
+    for (const id of dayObject.appointments) {
+      const appointment = appointments[id];
+      if (!appointment.interview) {
+        spots++
       }
-      newArr.push(day);
     }
-    return newArr;
-  }
+    const day = {...dayObject, spots};
+    return state.days.map(x => x.name === state.day ? day : x);
+  };
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -60,14 +57,13 @@ export default function useApplicationData() {
         setState({
           ...state,
           appointments,
-          days: updateSpotsRemaining(state, state.day, -1)
+          days: updateSpotsRemaining(state, appointments)
         });
         return response;
       });
   }
 
   function cancelInterview(id, interview) {
-    console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: null,
@@ -81,7 +77,7 @@ export default function useApplicationData() {
       setState({
         ...state,
         appointments,
-        days: updateSpotsRemaining(state, state.day, 1)
+        days: updateSpotsRemaining(state, appointments)
       });
       return response;
     });
