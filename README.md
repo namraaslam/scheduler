@@ -9,6 +9,15 @@ Using the latest tools and techniques, I built and tested a React application th
 ## Setup
 
 Install dependencies with `npm install`.
+Download and follow README of scheduler-api: https://github.com/namraaslam/scheduler-api
+
+## Dependencies
+ axios
+ classnames
+ normalize.css
+ react
+ react-dom
+ react-scripts
 
 ## Running Webpack Development Server
 
@@ -27,3 +36,4 @@ npm test
 ```sh
 npm run storybook
 ```
+
